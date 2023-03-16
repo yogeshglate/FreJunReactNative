@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 export default function BottomTabs() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen
           name={navigationStrings.randomUsers}
           component={RandomUsers}
