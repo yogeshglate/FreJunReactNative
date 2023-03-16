@@ -47,7 +47,7 @@ const RandomUsers = ({ usersModel, dispatch }: any) => {
 
   const renderFooter = () => (
     <View style={styles.footerText}>
-      {usersModel.moreLoading && <ActivityIndicator />}
+      {usersModel.moreLoading && !usersModel.error && <ActivityIndicator />}
       {usersModel.isListEnd && <Text>No more users at the moment</Text>}
     </View>
   );
