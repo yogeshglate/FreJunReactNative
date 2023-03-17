@@ -1,8 +1,9 @@
+import { useNetInfo } from '@react-native-community/netinfo';
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Button, FlatList, SafeAreaView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { Loader, UserCard } from '../../components';
+import { Loader, NoInternet, UserCard } from '../../components';
 import { appConstants } from '../../constants';
 import { getRandomUsersRequest } from '../../store/actions';
 import { IRandomUsersProps, TRootState } from '../../types';
@@ -10,6 +11,7 @@ import styles from './RandomUsersStyles';
 
 const RandomUsers = ({ usersModel, dispatch }: IRandomUsersProps) => {
   const [page, setPage] = useState(1);
+  const netInfo = useNetInfo();
 
   const requestAPI = () => {
     dispatch(
@@ -61,6 +63,7 @@ const RandomUsers = ({ usersModel, dispatch }: IRandomUsersProps) => {
     </View>
   );
 
+  if (!netInfo.isConnected) return <NoInternet />;
   return (
     <SafeAreaView style={styles.container}>
       {usersModel.loading ? (
