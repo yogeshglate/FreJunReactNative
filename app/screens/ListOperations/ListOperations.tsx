@@ -1,12 +1,14 @@
 import React, { useRef, useState } from 'react';
 import { FlatList, SafeAreaView, Text, View } from 'react-native';
 import { ProductCard, SearchInput } from '../../components';
+import { appConstants } from '../../constants';
 import products from '../../constants/products.json';
+import { IProducts } from '../../types';
 import { styles } from './ListOperationsStyles';
 
 const ListOperations = () => {
-  const [search, setSearch] = useState('');
-  const [data, setData] = useState(products);
+  const [search, setSearch] = useState<string>('');
+  const [data, setData] = useState<IProducts[]>(products);
   const productListRef = useRef<FlatList>(null);
 
   const onSearch = (text: string) => {
@@ -44,7 +46,7 @@ const ListOperations = () => {
 
   const renderEmpty = () => (
     <View style={styles.emptyTextWrapper}>
-      <Text>No Match Found For {search}</Text>
+      <Text>{`${appConstants.noMatchFound} ${search}`}</Text>
     </View>
   );
 
@@ -61,7 +63,7 @@ const ListOperations = () => {
           return <ProductCard item={item} />;
         }}
         showsVerticalScrollIndicator={false}
-        style={{ marginBottom: 100 }}
+        style={styles.productList}
         ListEmptyComponent={renderEmpty}
       />
     </SafeAreaView>

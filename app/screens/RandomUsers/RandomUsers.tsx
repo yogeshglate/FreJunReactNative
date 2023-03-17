@@ -1,19 +1,14 @@
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
-import {
-  ActivityIndicator,
-  Button,
-  FlatList,
-  SafeAreaView,
-  Text,
-  View,
-} from 'react-native';
+import { Button, FlatList, SafeAreaView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { UserCard } from '../../components';
+import { Loader, UserCard } from '../../components';
+import { appConstants } from '../../constants';
 import { getRandomUsersRequest } from '../../store/actions';
+import { IRandomUsersProps, TRootState } from '../../types';
 import styles from './RandomUsersStyles';
 
-const RandomUsers = ({ usersModel, dispatch }: any) => {
+const RandomUsers = ({ usersModel, dispatch }: IRandomUsersProps) => {
   const [page, setPage] = useState(1);
 
   const requestAPI = () => {
@@ -43,12 +38,14 @@ const RandomUsers = ({ usersModel, dispatch }: any) => {
     }
   };
 
-  const renderHeader = () => <Text style={styles.title}>Random Users</Text>;
+  const renderHeader = () => (
+    <Text style={styles.title}>{appConstants.randomUsers}</Text>
+  );
 
   const renderFooter = () => (
     <View style={styles.footerText}>
-      {usersModel.moreLoading && !usersModel.error && <ActivityIndicator />}
-      {usersModel.isListEnd && <Text>No more users at the moment</Text>}
+      {usersModel.moreLoading && !usersModel.error && <Loader />}
+      {usersModel.isListEnd && <Text>{appConstants.noUsers}</Text>}
     </View>
   );
 
@@ -57,8 +54,8 @@ const RandomUsers = ({ usersModel, dispatch }: any) => {
       {usersModel.error && <Text>{usersModel.error.message}</Text>}
       {!usersModel.error && (
         <>
-          <Text>No Data at the moment</Text>
-          <Button onPress={() => requestAPI()} title="Refresh" />
+          <Text>{appConstants.listEmpty}</Text>
+          <Button onPress={() => requestAPI()} title={appConstants.refresh} />
         </>
       )}
     </View>
@@ -67,9 +64,7 @@ const RandomUsers = ({ usersModel, dispatch }: any) => {
   return (
     <SafeAreaView style={styles.container}>
       {usersModel.loading ? (
-        <View style={styles.loading}>
-          <ActivityIndicator size="large" />
-        </View>
+        <Loader size={'large'} />
       ) : (
         <FlatList
           data={usersModel.data}
@@ -89,7 +84,7 @@ const RandomUsers = ({ usersModel, dispatch }: any) => {
   );
 };
 
-const mapStateToProps = (state: { users: any }) => {
+const mapStateToProps = (state: TRootState) => {
   return {
     usersModel: state.users,
   };

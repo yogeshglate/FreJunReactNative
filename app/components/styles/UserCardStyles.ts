@@ -1,20 +1,25 @@
 import { StyleSheet } from 'react-native';
+import { horizontalScale, moderateScale, verticalScale } from '../../services';
 
 export const styles = StyleSheet.create({
   cardWrapper: {
     flex: 1,
-    margin: 20,
+    margin: moderateScale(20),
     alignItems: 'center',
     backgroundColor: 'white',
-    borderRadius: 30,
-    height: 60,
+    borderRadius: moderateScale(30),
+    height: verticalScale(60),
     justifyContent: 'space-around',
     flexDirection: 'row',
-    width: 300,
+    width: horizontalScale(300),
     alignSelf: 'center',
   },
-  cardImage: { height: 50, width: 50, borderRadius: 30 },
+  cardImage: {
+    height: verticalScale(50),
+    width: horizontalScale(50),
+    borderRadius: moderateScale(30),
+  },
   cardText: {
-    width: 200,
+    width: horizontalScale(200),
   },
 });

@@ -1,8 +1,8 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { colors, navigationStrings } from '../constants';
+import { Icon } from '../components';
+import { appConstants, colors, navigationStrings } from '../constants';
 import { Bridging, ListOperations, RandomUsers } from '../screens';
 
 const Tab = createBottomTabNavigator();
@@ -17,7 +17,11 @@ export default function BottomTabs() {
           component={RandomUsers}
           options={{
             tabBarIcon: () => (
-              <Icon name="account-group" size={25} color={colors.black} />
+              <Icon
+                name={appConstants.usersIcon}
+                size={25}
+                color={colors.black}
+              />
             ),
           }}
         />
@@ -26,7 +30,11 @@ export default function BottomTabs() {
           component={ListOperations}
           options={{
             tabBarIcon: () => (
-              <Icon name="view-list" size={25} color={colors.black} />
+              <Icon
+                name={appConstants.listIcon}
+                size={25}
+                color={colors.black}
+              />
             ),
           }}
         />
@@ -35,7 +43,11 @@ export default function BottomTabs() {
           component={Bridging}
           options={{
             tabBarIcon: () => (
-              <Icon name="bridge" size={25} color={colors.black} />
+              <Icon
+                name={appConstants.bridgeIcon}
+                size={25}
+                color={colors.black}
+              />
             ),
           }}
         />

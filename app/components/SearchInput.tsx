@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Icon } from '../components';
+import { appConstants } from '../constants';
+import { ISearchInputProps } from '../types';
 import { styles } from './styles/SearchInputStyles';
 
 const SearchInput = ({
@@ -8,36 +10,31 @@ const SearchInput = ({
   clearSearch,
   onSearchTextChange,
   sortByPrice,
-}: {
-  search: string;
-  clearSearch: () => void;
-  onSearchTextChange: (searchText: string) => void;
-  sortByPrice: ({ ascending }: { ascending: boolean }) => void;
-}) => {
+}: ISearchInputProps) => {
   return (
     <View style={styles.searchWrapper}>
       <View style={styles.searchInputWrapper}>
         <TextInput
           value={search}
-          placeholder="Search"
+          placeholder={appConstants.search}
           style={styles.searchInput}
           onChangeText={onSearchTextChange}
         />
         {search && (
           <TouchableOpacity onPress={clearSearch}>
-            <Icon name="close" size={25} />
+            <Icon name={appConstants.closeIcon} size={25} />
           </TouchableOpacity>
         )}
       </View>
       <View style={styles.sortWrapper}>
-        <Text>Sort By Price</Text>
+        <Text>{appConstants.sortByPrice}</Text>
 
         <View style={styles.sortButtonWrapper}>
           <TouchableOpacity onPress={() => sortByPrice({ ascending: true })}>
-            <Icon name="sort-alphabetical-ascending" size={25} />
+            <Icon name={appConstants.ascSort} size={25} />
           </TouchableOpacity>
           <TouchableOpacity onPress={() => sortByPrice({ ascending: false })}>
-            <Icon name="sort-alphabetical-descending" size={25} />
+            <Icon name={appConstants.descSort} size={25} />
           </TouchableOpacity>
         </View>
       </View>

@@ -1,28 +1,34 @@
 import { StyleSheet } from 'react-native';
+import {
+  horizontalScale,
+  Metrics,
+  moderateScale,
+  verticalScale,
+} from '../../services';
 
 export const styles = StyleSheet.create({
   searchWrapper: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: horizontalScale(20),
   },
   searchInputWrapper: {
     flex: 1,
-    borderWidth: 1,
+    borderWidth: Metrics.borderLineWidth,
     borderColor: 'grey',
-    borderRadius: 30,
-    margin: 20,
+    borderRadius: moderateScale(30),
+    margin: moderateScale(20),
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    maxWidth: 280,
+    paddingHorizontal: horizontalScale(20),
+    maxWidth: horizontalScale(280),
   },
   searchInput: {
-    height: 48,
-    marginHorizontal: 10,
-    width: 180,
+    height: verticalScale(48),
+    marginHorizontal: horizontalScale(10),
+    width: horizontalScale(180),
   },
   sortWrapper: { alignItems: 'center' },
   sortButtonWrapper: { flexDirection: 'row' },

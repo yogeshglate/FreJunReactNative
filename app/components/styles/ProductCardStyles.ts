@@ -1,34 +1,41 @@
 import { StyleSheet } from 'react-native';
+import {
+  horizontalScale,
+  Metrics,
+  moderateScale,
+  verticalScale,
+} from '../../services';
 
 export const styles = StyleSheet.create({
   productCardContainer: {
     alignSelf: 'center',
-    margin: 20,
-    borderWidth: 1,
+    margin: moderateScale(20),
+    borderWidth: Metrics.borderLineWidth,
     borderColor: 'grey',
-    width: 300,
+    width: horizontalScale(300),
     flexDirection: 'row',
-    padding: 10,
-    borderRadius: 10,
+    padding: moderateScale(10),
+    borderRadius: moderateScale(10),
   },
-  productImage: { width: 80, height: 80 },
+  productImage: { width: horizontalScale(80), height: verticalScale(80) },
   productTitle: {
-    width: 180,
-    fontSize: 14,
+    width: horizontalScale(180),
+    fontSize: moderateScale(14),
     fontWeight: 'bold',
-    marginHorizontal: 10,
+    marginHorizontal: horizontalScale(10),
   },
   productDescription: {
-    width: 180,
-    marginHorizontal: 10,
-    fontSize: 12,
-    marginTop: 5,
+    width: horizontalScale(180),
+    marginHorizontal: horizontalScale(10),
+    fontSize: moderateScale(12),
+    marginTop: verticalScale(5),
   },
   productPrice: {
-    width: 180,
-    marginHorizontal: 10,
-    fontSize: 14,
-    marginTop: 5,
+    width: horizontalScale(180),
+    marginHorizontal: horizontalScale(10),
+
+    fontSize: moderateScale(14),
+    marginTop: verticalScale(5),
     fontWeight: 'bold',
     color: 'green',
   },
