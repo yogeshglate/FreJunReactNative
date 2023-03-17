@@ -13,4 +13,5 @@ export default {
   listEmpty: 'No Data at the moment',
   refresh: 'Refresh',
   noInternet: "Oops your're not connected to internet",
+  getDeviceId: 'Get Device ID',
 };
