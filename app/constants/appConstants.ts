@@ -12,4 +12,5 @@ export default {
   noUsers: 'No more users at the moment',
   listEmpty: 'No Data at the moment',
   refresh: 'Refresh',
+  noInternet: "Oops your're not connected to internet",
 };
